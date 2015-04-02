@@ -37,7 +37,7 @@ Please complete the variables in the brackets, examples below. The install may t
 
 ### Example
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue/master/tools/install.sh | bash -s root pass1234 true latest
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s root pass1234 true latest
 
 ## Introduction Usher
 
