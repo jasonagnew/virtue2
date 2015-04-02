@@ -1,0 +1,13 @@
+{
+  "commands": [
+    "composer install",
+    "gulp build"
+  ],
+  "storage": {
+    "public/content/uploads": 775,
+    "public/content/plugins": 775
+  },
+  "permissions": {
+    "public/.htaccess": 644
+  }
+}
