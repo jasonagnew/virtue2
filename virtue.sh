@@ -64,7 +64,7 @@ case "$1" in
         sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT
     else
         #Nginx
-        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -e
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -n $DOMAIN -e
     fi
 
     # Setup MySQL Database
