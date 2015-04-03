@@ -73,6 +73,10 @@ if [[ -n "$4" ]]; then
     set_config "PHP_VERISON" $4
 fi
 
+if [[ -n "$5" ]]; then
+    set_config "HTTP_SERVER" $5
+fi
+
 
 # Load config file
 source ~/.virtue_config
@@ -83,8 +87,13 @@ sudo mkdir $GIT
 #PHP
 bash $VIRTUE/scripts/php.sh
 
-#Apache
-bash $VIRTUE/scripts/apache.sh
+if [ $HTTP_SERVER = "apache" ]; then
+    #Apache
+    bash $VIRTUE/scripts/apache.sh
+else
+    #Nginc
+    bash $VIRTUE/scripts/nginx.sh
+fi
 
 #MySQL
 bash $VIRTUE/scripts/mysql.sh

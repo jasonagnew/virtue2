@@ -2,7 +2,7 @@
 
 Virute is super simple server setup. It offers a zero downtime deployment system with support for Composer, NPM etc. and with one command you can create an app with git deployment, domain & MySQL database.
 
-**Note**: Some of the LAMP set up is based the awesome [Vaprobash](https://github.com/fideloper/Vaprobash)  
+**Note**: The server setup is heavy based on the awesome [Vaprobash](https://github.com/fideloper/Vaprobash)
 
 ## Requirements
 
@@ -26,7 +26,7 @@ Add:
 
 You can install Virtue directly on your server like so:
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s [mysql-user] [mysql-password] [mysql-remote] [php-verson]
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s [mysql-user] [mysql-password] [mysql-remote] [php-verson] [http-server]
 
 Please complete the variables in the brackets, examples below. The install may take around 5 minutes.
 
@@ -34,12 +34,13 @@ Please complete the variables in the brackets, examples below. The install may t
 
     [mysql-remote]     true|false
     [php-verson]       latest|previous|distributed  (5.6|5.5|5.4)
+    [http-server]      apache|nginx
 
 ### Example
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s root pass1234 true latest
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s root pass1234 true latest apache
 
-## Introduction Usher
+## Introducing Usher
 
 Usher is Virtue's counterpart. It acts as management tool for your Mac or Linux system. You can built servers, deploy apps etc. from your local terminal. To install open your terminal and run:
 
@@ -47,11 +48,11 @@ Usher is Virtue's counterpart. It acts as management tool for your Mac or Linux 
 
 Lets build our first server, you can see the different options above.
 
-    $ usher server:create [server-name] [ssh] [mysql-user] [mysql-password] [mysql-remote] [php-verson]
+    $ usher server:create [server-name] [ssh] [mysql-user] [mysql-password] [mysql-remote] [php-verson] [http-server]
 
 Please complete the variables in the brackets, examples below. The install may take around 5 minutes.
 
-    $ usher server:create my-server root@123.123.123.123 root pass1234 true latest
+    $ usher server:create my-server root@123.123.123.123 root pass1234 true latest apache
 
 You can also add a Virtue server to Usher after its been created directly by:
 

@@ -58,7 +58,14 @@ case "$1" in
     echo $DOMAIN > $PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
 
     # Setup domain
-    sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT
+
+    if [ $HTTP_SERVER = "apache" ]; then
+        #Apache
+        sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT
+    else
+        #Nginx
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -e
+    fi
 
     # Setup MySQL Database
     mysql -u $MYSQL_USER -p$MYSQL_PASS -e "CREATE DATABASE ${APP//-/_}"
@@ -76,9 +83,17 @@ case "$1" in
         # For each domain
         while read APP_DOMAIN; do
             # Diable & Remove domain
-            sudo a2dissite $APP_DOMAIN
-            service apache2 reload
-            sudo rm -rf /etc/apache2/sites-available/$APP_DOMAIN.conf
+            if [ $HTTP_SERVER = "apache" ]; then
+                #Apache
+                sudo a2dissite $APP_DOMAIN
+                service apache2 reload
+                sudo rm -rf /etc/apache2/sites-available/$APP_DOMAIN.conf
+            else
+                #Nginx
+                sudo ngxdis $APP_DOMAIN
+                sudo service nginx restart
+                sudo rm -rf /etc/nginx/sites-available/$APP_DOMAIN.conf
+            fi
         done <$PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
 
         # Remove Folders
@@ -108,7 +123,13 @@ case "$1" in
     echo $DOMAIN >> $PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
 
     # Setup domain
-    sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT
+    if [ $HTTP_SERVER = "apache" ]; then
+        #Apache
+        sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT
+    else
+        #Nginx
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -e
+    fi
 
     # Let people know where done
     echo "Domain linked"
@@ -127,9 +148,17 @@ case "$1" in
     sed -i '/$DOMAIN/d' $PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
 
     # Diable & Remove domain
-    sudo a2dissite $DOMAIN
-    service apache2 reload
-    sudo rm -rf /etc/apache2/sites-available/$DOMAIN.conf
+    if [ $HTTP_SERVER = "apache" ]; then
+        #Apache
+        sudo a2dissite $DOMAIN
+        service apache2 reload
+        sudo rm -rf /etc/apache2/sites-available/$DOMAIN.conf
+    else
+        #Nginx
+        sudo ngxdis $DOMAIN
+        sudo service nginx restart
+        sudo rm -rf /etc/nginx/sites-available/$DOMAIN.conf
+    fi
     sudo rm -rf $SSL/$APP/$DOMAIN
 
     # Let people know where done
@@ -344,7 +373,14 @@ EOF
         mv $PATH/$NAME.key $SSL/$APP/$DOMAIN/server.key
     fi
 
-    sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server
+    if [ $HTTP_SERVER = "apache" ]; then
+        #Apache
+        sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server
+    else
+        #Nginx
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server -e
+    fi
+
 
     echo "SSL Added"
 

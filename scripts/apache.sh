@@ -12,8 +12,7 @@ echo ">>> Installing Apache Server"
 
 public_folder="$PUBLIC"
 
-github_url="https://raw.githubusercontent.com/fideloper/Vaprobash/master"
-
+github_url=$GIT_URL
 
 # Add repo for latest FULL stable Apache
 # (Required to remove conflicts with PHP PPA due to partial Apache upgrade within it)
@@ -37,6 +36,9 @@ sudo a2enmod mpm_worker rewrite actions ssl > /dev/null 2>&1
 curl --silent -L $github_url/helpers/vhost.sh > vhost
 sudo chmod guo+x vhost
 sudo mv vhost /usr/local/bin
+
+# Disable default
+sudo a2dissite 000-default
 
 # If PHP is installed or HHVM is installed, proxy PHP requests to it
 if [[ $PHP_IS_INSTALLED -eq 0 ]]; then
