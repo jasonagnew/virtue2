@@ -27,7 +27,7 @@ case "$1" in
     # Setup config files
     echo $SSH > $STORAGE/$SERVER.config
 
-    ssh -t $SSH 'curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s "${@:4}"'
+    ssh -t $SSH 'curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s '"${@:4}"
 
     # Added
     echo "Server created"
