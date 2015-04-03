@@ -92,7 +92,7 @@ case "$1" in
                 #Nginx
                 sudo ngxdis $APP_DOMAIN
                 sudo service nginx restart
-                sudo rm -rf /etc/nginx/sites-available/$APP_DOMAIN.conf
+                sudo rm -rf /etc/nginx/sites-available/$APP_DOMAIN
             fi
         done <$PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
 
@@ -128,7 +128,7 @@ case "$1" in
         sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT
     else
         #Nginx
-        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -e
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -n $DOMAIN -e
     fi
 
     # Let people know where done
@@ -157,7 +157,7 @@ case "$1" in
         #Nginx
         sudo ngxdis $DOMAIN
         sudo service nginx restart
-        sudo rm -rf /etc/nginx/sites-available/$DOMAIN.conf
+        sudo rm -rf /etc/nginx/sites-available/$DOMAIN
     fi
     sudo rm -rf $SSL/$APP/$DOMAIN
 
@@ -378,7 +378,7 @@ EOF
         sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server
     else
         #Nginx
-        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server -e
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server -n $DOMAIN -e
     fi
 
 
