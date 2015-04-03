@@ -41,7 +41,7 @@ sudo chmod guo+x ngxen ngxdis ngxcb
 sudo mv ngxen ngxdis ngxcb /usr/local/bin
 
 # Disable "default"
-sudo ngxdis default
+sudo ngxdis default > /dev/null 2>&1
 
 if [[ $PHP_IS_INSTALLED -eq 0 ]]; then
     # PHP-FPM Config for Nginx

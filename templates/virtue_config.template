@@ -10,7 +10,7 @@ GIT=/var/repo
 SSL=/etc/apache2/ssl
 GIT_URL=https://raw.githubusercontent.com/jasonagnew/virtue2/master
 
-
+HTTP_SERVER=apache
 
 SERVER_TIMEZONE="UTC"
 PHP_VERISON="latest"
