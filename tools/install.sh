@@ -87,6 +87,27 @@ sudo mkdir $GIT
 #PHP
 bash $VIRTUE/scripts/php.sh
 
+#Self Sign - used to reject random connections
+echo ">>> Installing Self Sign SSL - Used to reject 443 connections"
+openssl genrsa -out $SSL/all/server.key 1024 > /dev/null 2>&1
+touch $SSL/all/openssl.cnf > /dev/null 2>&1
+cat >> $SSL/all/openssl.cnf <<EOF
+[ req ]
+prompt = no
+distinguished_name = req_distinguished_name
+[ req_distinguished_name ]
+C = GB
+ST = Test State
+L = Test Locality
+O = Org Name
+OU = Org Unit Name
+CN = Common Name
+emailAddress = test@email.com
+EOF
+openssl req -config $SSL/all/openssl.cnf -new -key $SSL/all/server.key -out $SSL/all/server.csr > /dev/null 2>&1
+openssl x509 -req -days 1024 -in $SSL/all/server.csr -signkey $SSL/all/server.key -out $SSL/all/server.crt > /dev/null 2>&1
+
+
 if [ $HTTP_SERVER = "apache" ]; then
     #Apache
     bash $VIRTUE/scripts/apache.sh
