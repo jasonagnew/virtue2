@@ -39,6 +39,33 @@ sudo mv vhost /usr/local/bin
 
 # Disable default
 sudo a2dissite 000-default > /dev/null 2>&1
+sudo rm /etc/apache2/sites-available/000-default.conf
+sudo rm /etc/apache2/sites-available/default-ssl.conf > /dev/null 2>&1
+
+#Add default to reject random connections
+touch /etc/apache2/sites-available/000-default.conf > /dev/null 2>&1
+cat >> /etc/apache2/sites-available/000-default.conf <<EOF
+<VirtualHost *:80>
+    ErrorDocument 410 " "
+    RedirectMatch 410 .
+    <Location />
+        Deny from all
+        Allow from none
+    </Location>
+</VirtualHost>
+<VirtualHost *:443>
+    SSLEngine on
+    SSLCertificateFile  $SSL/all/server.crt
+    SSLCertificateKeyFile $SSL/all/server.key
+    ErrorDocument 410 " "
+    RedirectMatch 410 .
+    <Location />
+        Deny from all
+        Allow from none
+    </Location>
+</VirtualHost>
+EOF
+sudo a2ensite 000-default
 
 # If PHP is installed or HHVM is installed, proxy PHP requests to it
 if [[ $PHP_IS_INSTALLED -eq 0 ]]; then
