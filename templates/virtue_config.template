@@ -7,7 +7,7 @@ STORAGE=storage
 SITE_REMOTE=git-remote.conf
 SITE_DOMAINS=site-domains.conf
 GIT=/var/repo
-SSL=/etc/apache2/ssl
+SSL=/etc/http/ssl
 GIT_URL=https://raw.githubusercontent.com/jasonagnew/virtue2/master
 
 HTTP_SERVER=apache

@@ -378,7 +378,7 @@ EOF
         sudo vhost -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server
     else
         #Nginx
-        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server -n $DOMAIN -e
+        sudo ngxcb -s $DOMAIN -d $PUBLIC/$APP/$CURRENT/$ROOT -p $SSL/$APP/$DOMAIN -c server -n $DOMAIN -e -f
     fi
 
 

@@ -155,12 +155,15 @@ ServerBlockName="vagrant"
 EnableServerBlock=0
 NeedsReload=0
 ForceOverwrite=0
+CertPath=""
+CertName=""
+
 
 # Parse flags:
 # - Run it in "silence"-mode by starting with a ":"
 # - Single ":" after an argument means "required"
 # - Double ":" after an argument means "optional"
-while getopts ":hd:s:n::ef" OPTION; do
+while getopts ":hd:s:n::p::c::ef" OPTION; do
     case $OPTION in
         h)
             show_usage
@@ -174,17 +177,17 @@ while getopts ":hd:s:n::ef" OPTION; do
         n)
             ServerBlockName=$OPTARG
             ;;
-        e)
-            EnableServerBlock=1
-            ;;
-        f)
-            ForceOverwrite=1
-            ;;
         p)
             CertPath=$OPTARG
             ;;
         c)
             CertName=$OPTARG
+            ;;
+        e)
+            EnableServerBlock=1
+            ;;
+        f)
+            ForceOverwrite=1
             ;;
         *)
             show_usage
