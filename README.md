@@ -162,15 +162,15 @@ You can delete an app:
 
 You can add either add certs or generate self-signed:
 
-    $ usher app:delete [server-name] [app-name] [domain] [path]
+    $ usher app:ssl [server-name] [app-name] [domain] [path]
 
 For self-signed:
 
-    $ usher app:delete my-server my-app app.com self-sign
+    $ usher app:ssl my-server my-app app.com self-sign
 
 Or provide path to certs on the server
 
-    $ usher app:delete my-server my-app app.com  my/path/on/server/to/certs
+    $ usher app:ssl my-server my-app app.com  my/path/on/server/to/certs
 
 ## License
 
