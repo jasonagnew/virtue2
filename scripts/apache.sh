@@ -65,7 +65,7 @@ cat >> /etc/apache2/sites-available/000-default.conf <<EOF
     </Location>
 </VirtualHost>
 EOF
-sudo a2ensite 000-default
+sudo a2ensite 000-default > /dev/null 2>&1
 
 # If PHP is installed or HHVM is installed, proxy PHP requests to it
 if [[ $PHP_IS_INSTALLED -eq 0 ]]; then
