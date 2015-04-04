@@ -89,6 +89,7 @@ bash $VIRTUE/scripts/php.sh
 
 #Self Sign - used to reject random connections
 echo ">>> Installing Self Sign SSL - Used to reject 443 connections"
+sudo mkdir -p $SSL/all
 openssl genrsa -out $SSL/all/server.key 1024 > /dev/null 2>&1
 touch $SSL/all/openssl.cnf > /dev/null 2>&1
 cat >> $SSL/all/openssl.cnf <<EOF
