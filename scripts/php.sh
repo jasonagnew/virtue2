@@ -20,6 +20,14 @@ source ~/.virtue_config
     # Set PHP FPM allowed clients IP address
     sudo sed -i "s/;listen.allowed_clients/listen.allowed_clients/" /etc/php5/fpm/pool.d/www.conf
 
+    # Set run-as user for PHP5-FPM processes to user/group "root"
+    # to avoid permission errors from apps writing to files
+    sudo sed -i "s/user = www-data/user = root/" /etc/php5/fpm/pool.d/www.conf
+    sudo sed -i "s/group = www-data/group = root/" /etc/php5/fpm/pool.d/www.conf
+
+    sudo sed -i "s/listen\.owner.*/listen.owner = root/" /etc/php5/fpm/pool.d/www.conf
+    sudo sed -i "s/listen\.group.*/listen.group = root/" /etc/php5/fpm/pool.d/www.conf
+    sudo sed -i "s/listen\.mode.*/listen.mode = 0666/" /etc/php5/fpm/pool.d/www.conf
 
     # xdebug Config
     cat > $(find /etc/php5 -name xdebug.ini) << EOF
@@ -39,7 +47,7 @@ EOF
 
     # PHP Error Reporting Config
     sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/fpm/php.ini
-    sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/fpm/php.ini
+    sudo sed -i "s/display_errors = .*/display_errors = Off/" /etc/php5/fpm/php.ini
 
     # PHP Date Timezone
     sudo sed -i "s/;date.timezone =.*/date.timezone = ${SERVER_TIMEZONE/\//\\/}/" /etc/php5/fpm/php.ini

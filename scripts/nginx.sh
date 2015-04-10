@@ -30,6 +30,7 @@ echo ">>> Configuring Nginx"
 
 # Turn off sendfile
 sed -i 's/sendfile on;/sendfile off;/' /etc/nginx/nginx.conf
+sed -i "s/user www-data;/user root;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
 # Nginx enabling and disabling virtual hosts
