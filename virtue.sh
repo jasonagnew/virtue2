@@ -231,14 +231,17 @@ case "$1" in
 
             echo -e "${YELLOW}>>> Setting Storage Directory: ${DIR} ${NC}"
 
-            # Remove current release folder
-            rm -rf $PUBLIC/$APP/$RELEASES/$TIMESTAMP/$DIR
-
             # Make sure the folder exists in APP/STORAGE directory
             mkdir -p $PUBLIC/$APP/$STORAGE/$DIR
 
+            # Sync its contents into storage
+            rsync -r $PUBLIC/$APP/$RELEASES/$TIMESTAMP/$DIR/* $PUBLIC/$APP/$STORAGE/$DIR
+
             # Set permissions
             chmod -R $PERMISSION $PUBLIC/$APP/$STORAGE/$DIR
+
+            # Remove current release folder
+            rm -rf $PUBLIC/$APP/$RELEASES/$TIMESTAMP/$DIR
 
             # Setup link
             ln -nfs $PUBLIC/$APP/$STORAGE/$DIR $PUBLIC/$APP/$RELEASES/$TIMESTAMP/$DIR
