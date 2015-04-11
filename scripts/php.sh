@@ -20,15 +20,6 @@ source ~/.virtue_config
     # Set PHP FPM allowed clients IP address
     sudo sed -i "s/;listen.allowed_clients/listen.allowed_clients/" /etc/php5/fpm/pool.d/www.conf
 
-    # Set run-as user for PHP5-FPM processes to user/group "root"
-    # to avoid permission errors from apps writing to files
-    sudo sed -i "s/user = www-data/user = root/" /etc/php5/fpm/pool.d/www.conf
-    sudo sed -i "s/group = www-data/group = root/" /etc/php5/fpm/pool.d/www.conf
-
-    sudo sed -i "s/listen\.owner.*/listen.owner = root/" /etc/php5/fpm/pool.d/www.conf
-    sudo sed -i "s/listen\.group.*/listen.group = root/" /etc/php5/fpm/pool.d/www.conf
-    sudo sed -i "s/listen\.mode.*/listen.mode = 0666/" /etc/php5/fpm/pool.d/www.conf
-
     # xdebug Config
     cat > $(find /etc/php5 -name xdebug.ini) << EOF
 zend_extension=$(find /usr/lib/php5 -name xdebug.so)

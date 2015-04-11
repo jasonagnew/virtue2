@@ -28,9 +28,11 @@ sudo apt-get install -qq nginx > /dev/null 2>&1
 
 echo ">>> Configuring Nginx"
 
+# Set root to be part of www-data group
+sudo usermod -a -G www-data root
+
 # Turn off sendfile
 sed -i 's/sendfile on;/sendfile off;/' /etc/nginx/nginx.conf
-sed -i "s/user www-data;/user root;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
 # Nginx enabling and disabling virtual hosts

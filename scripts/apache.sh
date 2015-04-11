@@ -31,6 +31,7 @@ echo ">>> Configuring Apache"
 
 # Set root to be part of www-data group
 sudo usermod -a -G www-data root
+
 # Apache Config
 sudo a2dismod php5 mpm_prefork > /dev/null 2>&1
 sudo a2enmod mpm_worker rewrite actions ssl > /dev/null 2>&1
