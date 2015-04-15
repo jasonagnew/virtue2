@@ -26,7 +26,7 @@ Add:
 
 You can install Virtue directly on your server like so:
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s [mysql-user] [mysql-password] [mysql-remote] [php-verson] [http-server]
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s [mysql-user] [mysql-password] [mysql-remote] [php-verson] [http-server] [server-user]
 
 Please complete the variables in the brackets, examples below. The install may take around 5 minutes.
 
@@ -38,7 +38,7 @@ Please complete the variables in the brackets, examples below. The install may t
 
 ### Example
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s root pass1234 true latest apache
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s root pass1234 true latest apache root
 
 ## Introducing Usher
 
@@ -52,7 +52,7 @@ Lets build our first server, you can see the different options above.
 
 Please complete the variables in the brackets, examples below. The install may take around 5 minutes.
 
-    $ usher server:create my-server root@123.123.123.123 root pass1234 true latest apache
+    $ usher server:create my-server root@123.123.123.123 root pass1234 true latest apache root
 
 You can also add a Virtue server to Usher after its been created directly by:
 

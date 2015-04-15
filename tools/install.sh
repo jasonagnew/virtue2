@@ -77,6 +77,10 @@ if [[ -n "$5" ]]; then
     set_config "HTTP_SERVER" $5
 fi
 
+if [[ -n "$6" ]]; then
+    set_config "USER" $6
+fi
+
 
 # Load config file
 source ~/.virtue_config

@@ -241,7 +241,7 @@ case "$1" in
             chmod -R $PERMISSION $PUBLIC/$APP/$STORAGE/$DIR
 
             # Lets make sure www-data has access to it
-            chown -R root:www-data $PUBLIC/$APP/$STORAGE/$DIR
+            chown -R $USER:www-data $PUBLIC/$APP/$STORAGE/$DIR
 
             # Remove current release folder
             rm -rf $PUBLIC/$APP/$RELEASES/$TIMESTAMP/$DIR
@@ -275,7 +275,7 @@ case "$1" in
     echo -e "${YELLOW}>>> Setting Release Live ${NC}"
 
     # Set release live
-    chown -R root:www-data $PUBLIC/$APP/$RELEASES/$TIMESTAMP
+    chown -R $USER:www-data $PUBLIC/$APP/$RELEASES/$TIMESTAMP
     rm -rf $PUBLIC/$APP/$CURRENT
     ln -nfs $PUBLIC/$APP/$STORAGE/.env $PUBLIC/$APP/$RELEASES/$TIMESTAMP/.env
     ln -nfs $PUBLIC/$APP/$RELEASES/$TIMESTAMP $PUBLIC/$APP/$CURRENT

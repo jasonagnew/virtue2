@@ -1,3 +1,4 @@
+USER=root
 PUBLIC=/var/www
 CURRENT=current
 RELEASES=releases
