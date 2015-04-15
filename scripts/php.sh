@@ -21,8 +21,8 @@ source ~/.virtue_config
     sudo sed -i "s/;listen.allowed_clients/listen.allowed_clients/" /etc/php5/fpm/pool.d/www.conf
 
     # xdebug Config
-    cat > $(find /etc/php5 -name xdebug.ini) << EOF
-zend_extension=$(find /usr/lib/php5 -name xdebug.so)
+    cat > $(echo find /etc/php5 -name xdebug.ini) << EOF
+zend_extension=$(echo find /usr/lib/php5 -name xdebug.so)
 xdebug.remote_enable = 1
 xdebug.remote_connect_back = 1
 xdebug.remote_port = 9000
