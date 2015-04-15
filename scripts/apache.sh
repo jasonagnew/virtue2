@@ -30,7 +30,7 @@ sudo apt-get install -qq apache2 apache2-mpm-event > /dev/null 2>&1
 echo ">>> Configuring Apache"
 
 # Set root to be part of www-data group
-sudo usermod -a -G www-data root
+sudo usermod -a -G www-data $USER
 
 # Apache Config
 sudo a2dismod php5 mpm_prefork > /dev/null 2>&1

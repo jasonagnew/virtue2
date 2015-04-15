@@ -29,7 +29,7 @@ sudo apt-get install -qq nginx > /dev/null 2>&1
 echo ">>> Configuring Nginx"
 
 # Set root to be part of www-data group
-sudo usermod -a -G www-data root
+sudo usermod -a -G www-data $USER
 
 # Turn off sendfile
 sed -i 's/sendfile on;/sendfile off;/' /etc/nginx/nginx.conf
