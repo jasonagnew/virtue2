@@ -52,6 +52,13 @@ case "$1" in
     sudo mkdir -p $PUBLIC/$APP/$RELEASES
     sudo mkdir -p $PUBLIC/$APP/$CONFIG
     sudo mkdir -p $PUBLIC/$APP/$STORAGE
+    
+    GIT_DOMAIN=(${REMOTE//@/ })
+    GIT_DOMAIN=${GIT_DOMAIN[1]}
+    GIT_DOMAIN=(${GIT_DOMAIN//:/ })
+    GIT_DOMAIN=${GIT_DOMAIN[0]}
+    
+    sudo ssh-keyscan -H $GIT_DOMAIN >> ~/.ssh/known_hosts
 
     # Setup config files
     echo $REMOTE > $PUBLIC/$APP/$CONFIG/$SITE_REMOTE
@@ -173,6 +180,13 @@ case "$1" in
     else
       REMOTE="$3"
     fi
+    
+    GIT_DOMAIN=(${REMOTE//@/ })
+    GIT_DOMAIN=${GIT_DOMAIN[1]}
+    GIT_DOMAIN=(${GIT_DOMAIN//:/ })
+    GIT_DOMAIN=${GIT_DOMAIN[0]}
+    
+    sudo ssh-keyscan -H $GIT_DOMAIN >> ~/.ssh/known_hosts
 
     # Add remote to config
     echo $REMOTE > $PUBLIC/$APP/$CONFIG/$SITE_REMOTE
