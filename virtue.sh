@@ -328,6 +328,39 @@ case "$1" in
     echo "Rollback completed"
   ;;
 
+  app:csr)
+    # Check Args
+    if [[ -z $3 ]]; then
+        echo "You must specify a domain"
+        exit 1
+    else
+      DOMAIN="$3"
+    fi
+
+
+    sudo mkdir -p $SSL/$APP/$DOMAIN
+
+    openssl genrsa -out $SSL/$APP/$DOMAIN/server.key 1024
+    touch $SSL/$APP/$DOMAIN/openssl.cnf
+    cat >> $SSL/$APP/$DOMAIN/openssl.cnf <<EOF
+[ req ]
+prompt = no
+distinguished_name = req_distinguished_name
+[ req_distinguished_name ]
+C =  $4
+ST = $5
+L = $6
+O = $7
+OU = $8
+CN = $10
+emailAddress = $9
+EOF
+
+    openssl req -config $SSL/$APP/$DOMAIN/openssl.cnf -new -key $SSL/$APP/$DOMAIN/server.key -out $SSL/$APP/$DOMAIN/server.csr
+
+    cat $SSL/$APP/$DOMAIN/server.csr
+  ;;
+
   app:ssl)
     # Check Args
     if [[ -z $3 ]]; then
