@@ -366,11 +366,11 @@ ST = $5
 L = $6
 O = $7
 OU = $8
-CN = $10
+CN = ${10}
 emailAddress = $9
 EOF
 
-    openssl req -config $SSL/$APP/$DOMAIN/openssl.cnf -new -key $SSL/$APP/$DOMAIN/server.key -out $SSL/$APP/$DOMAIN/server.csr
+    openssl req -config $SSL/$APP/$DOMAIN/openssl.cnf -new -key $SSL/$APP/$DOMAIN/server.key -out $SSL/$APP/$DOMAIN/server.csr > /dev/null 2>&1
 
     cat $SSL/$APP/$DOMAIN/server.csr
   ;;
