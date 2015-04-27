@@ -409,7 +409,7 @@ EOF
     else
         # Check Args
         if [[ -z $4 ]]; then
-            echo "You must specify path to SSL- CRT & KEY"
+            echo "You must specify path to SSL"
             exit 1
         else
           PATH="$4"
@@ -417,14 +417,25 @@ EOF
 
          # Check Args
         if [[ -z $5 ]]; then
-            echo "You must specify path to name for CRT & KEY"
+            echo "You must specify path to name"
             exit 1
         else
           NAME="$5"
         fi
-
+        
+        if [[ -z $6 ]]; then
+          KEY="yes"
+        else
+          KEY="no"
+        fi
+        
         mv $PATH/$NAME.crt $SSL/$APP/$DOMAIN/server.crt
-        mv $PATH/$NAME.key $SSL/$APP/$DOMAIN/server.key
+        
+        if [ $KEY= "yes" ]; then
+          mv $PATH/$NAME.key $SSL/$APP/$DOMAIN/server.key
+        fi
+      
+        
     fi
 
     if [ $HTTP_SERVER = "apache" ]; then
