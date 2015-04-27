@@ -474,7 +474,7 @@ EOF
      CRON="$5"
     fi
 
-    if [ $TYPE = "delete" ] || [$TYPE = "update" ]; then
+    if [ $TYPE = "delete" ] || [ $TYPE = "update" ]; then
       #Remove
       crontab -l 2>/dev/null | sed -e "\?^$JOB_NAME\$?,/^\$/ d" | crontab -
     fi
