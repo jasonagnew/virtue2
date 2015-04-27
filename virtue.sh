@@ -467,19 +467,18 @@ EOF
      JOB_NAME="$4"
     fi
 
-    if [[ -z $5 ]]; then
-       echo "You must specify a cron job"
-       exit 1
-    else
-     CRON="$5"
-    fi
-
     if [ $TYPE = "delete" ] || [ $TYPE = "update" ]; then
       #Remove
       crontab -l 2>/dev/null | sed -e "/#$JOB_NAME$/d" | crontab -
     fi
 
     if [ $TYPE = "add" ] || [ $TYPE = "update" ]; then
+        if [[ -z $5 ]]; then
+           echo "You must specify a cron job"
+           exit 1
+        else
+         CRON="$5"
+        fi
       #add
       crontab -l | { cat; echo "$CRON #$JOB_NAME"; } | crontab -
     fi
