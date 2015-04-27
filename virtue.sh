@@ -424,9 +424,9 @@ EOF
         fi
         
         if [[ -z $6 ]]; then
-          KEY="yes"
+          KEY ="yes"
         else
-          KEY="no"
+          KEY ="no"
         fi
         
         mv $TEMP_PATH/$NAME.crt $SSL/$APP/$DOMAIN/server.crt
