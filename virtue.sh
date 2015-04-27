@@ -412,7 +412,7 @@ EOF
             echo "You must specify path to SSL"
             exit 1
         else
-          PATH="$4"
+          TEMP_PATH="$4"
         fi
 
          # Check Args
@@ -429,10 +429,10 @@ EOF
           KEY="no"
         fi
         
-        mv $PATH/$NAME.crt $SSL/$APP/$DOMAIN/server.crt
+        mv $TEMP_PATH/$NAME.crt $SSL/$APP/$DOMAIN/server.crt
         
         if [ $KEY= "yes" ]; then
-          mv $PATH/$NAME.key $SSL/$APP/$DOMAIN/server.key
+          mv $TEMP_PATH/$NAME.key $SSL/$APP/$DOMAIN/server.key
         fi
       
         
