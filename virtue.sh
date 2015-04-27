@@ -152,7 +152,7 @@ case "$1" in
     fi
 
     #Remove from config
-    sed -i '/$DOMAIN/d' $PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
+    sed -i "/$DOMAIN/d" $PUBLIC/$APP/$CONFIG/$SITE_DOMAINS
 
     # Diable & Remove domain
     if [ $HTTP_SERVER = "apache" ]; then
