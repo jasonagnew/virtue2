@@ -451,6 +451,42 @@ EOF
 
   ;;
 
+  app:cron)
+    # Check Args
+    if [[ -z $3 ]]; then
+       echo "You must specify a type add, update, delete"
+       exit 1
+    else
+     TYPE="$3"
+    fi
+
+    if [[ -z $4 ]]; then
+       echo "You must specify a job name"
+       exit 1
+    else
+     JOB_NAME="$4"
+    fi
+
+    if [[ -z $5 ]]; then
+       echo "You must specify a cron job"
+       exit 1
+    else
+     CRON="$5"
+    fi
+
+    if [ $TYPE = "delete" ] || [$TYPE = "update" ]; then
+      #Remove
+      crontab -l 2>/dev/null | sed -e "\?^$JOB_NAME\$?,/^\$/ d" | crontab -
+    fi
+
+    if [ $TYPE = "add" ] || [ $TYPE = "update" ]; then
+      #add
+      crontab -l | { cat; echo "$CRON #$JOB_NAME"; } | crontab -
+    fi
+
+    echo "cron sorted"
+  ;;
+
   app:env)
     nano $PUBLIC/$APP/$STORAGE/.env
   ;;
