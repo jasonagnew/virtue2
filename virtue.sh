@@ -354,7 +354,7 @@ case "$1" in
 
     sudo mkdir -p $SSL/$APP/$DOMAIN
 
-    openssl genrsa -out $SSL/$APP/$DOMAIN/server.key 1024
+    openssl genrsa -out $SSL/$APP/$DOMAIN/server.key 1024 > /dev/null 2>&1
     touch $SSL/$APP/$DOMAIN/openssl.cnf
     cat >> $SSL/$APP/$DOMAIN/openssl.cnf <<EOF
 [ req ]
