@@ -156,6 +156,11 @@ sudo gem install sass > /dev/null 2>&1
 exit 0
 +END
 
+echo ">>> Installing Supervisor"
+bash << +END
+sudo apt-get install supervisor > /dev/null 2>&1
+exit 0
++END
 
 #SSH Key
 echo ">>> Generating SSH Key"
