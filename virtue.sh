@@ -500,7 +500,7 @@ EOF
     fi
 
     if [[ -z $3 ]]; then
-       echo "You must specify a job name"
+       echo "You must specify a name"
        exit 1
     else
      KEY_NAME="$3"
@@ -515,13 +515,13 @@ EOF
 
     if [ $TYPE = "add" ] || [ $TYPE = "update" ]; then
         if [[ -z $4 ]]; then
-           echo "You must specify a cron job"
+           echo "You must specify a key"
            exit 1
         else
          SSH_KEY="$4"
         fi
       #add
-      echo "#$KEY_NAME\n#SSH_KEY" >> $FILE
+      echo "#$KEY_NAME\n$SSH_KEY" >> $FILE
     fi
 
     echo "SSH Key: $KEY_NAME - $TYPE"
