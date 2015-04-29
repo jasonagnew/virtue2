@@ -219,6 +219,9 @@ case "$1" in
      #Lets jump into realease
      cd $PUBLIC/$APP/$RELEASES/$TIMESTAMP
 
+     #Set up .env
+     ln -nfs $PUBLIC/$APP/$STORAGE/.env $PUBLIC/$APP/$RELEASES/$TIMESTAMP/.env
+
     # Check for deploy file
     set +e;
     if [ -f deploy.json ]; then
@@ -295,7 +298,6 @@ case "$1" in
     # Set release live
     chown -R $USER:www-data $PUBLIC/$APP/$RELEASES/$TIMESTAMP
     rm -rf $PUBLIC/$APP/$CURRENT
-    ln -nfs $PUBLIC/$APP/$STORAGE/.env $PUBLIC/$APP/$RELEASES/$TIMESTAMP/.env
     ln -nfs $PUBLIC/$APP/$RELEASES/$TIMESTAMP $PUBLIC/$APP/$CURRENT
     sudo service php5-fpm reload
 
