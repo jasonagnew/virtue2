@@ -158,7 +158,7 @@ exit 0
 
 echo ">>> Installing Supervisor"
 bash << +END
-sudo apt-get install supervisor > /dev/null 2>&1
+sudo apt-get -qq install supervisor > /dev/null 2>&1
 exit 0
 +END
 
