@@ -521,7 +521,7 @@ EOF
          SSH_KEY="$4"
         fi
       #add
-      echo "#$KEY_NAME\n$SSH_KEY" >> $FILE
+      echo -e "#$KEY_NAME\n$SSH_KEY" >> $FILE
     fi
 
     echo "SSH Key: $KEY_NAME - $TYPE"
