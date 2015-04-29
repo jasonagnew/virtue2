@@ -237,6 +237,8 @@ case "$1" in
           eval $COM
         done
 
+        cd $PUBLIC/$APP/$RELEASES/$TIMESTAMP
+
         # Loop storage directories
         for DIR in ${STORAGE_DIRS[@]}
         do
@@ -263,6 +265,8 @@ case "$1" in
             # Setup link
             ln -nfs $PUBLIC/$APP/$STORAGE/$DIR $PUBLIC/$APP/$RELEASES/$TIMESTAMP/$DIR
         done
+
+        cd $PUBLIC/$APP/$RELEASES/$TIMESTAMP
 
         # Loop file premissions
         for DIR in ${PERMISSIONS_DIRS[@]}
@@ -538,7 +542,8 @@ EOF
 
   update)
     echo "Updating..."
-    curl -L -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/jasonagnew/virtue2/master/virtue.sh > /usr/local/bin/virtue
+    TIMESTAMP=$(date +%s)
+    curl -L -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/jasonagnew/virtue2/master/virtue.sh?$TIMESTAMP > /usr/local/bin/virtue
     sudo chmod a+x /usr/local/bin/virtue
     echo "Update complete"
     exit 1
