@@ -510,7 +510,7 @@ EOF
 
     if [ $TYPE = "delete" ] || [ $TYPE = "update" ]; then
       #Remove
-      LINE=$(grep -n "#$JOB_NAME" $FILE | grep -Eo '^[^:]+') && sed -i "$LINE,$(($LINE+1))d;" $FILE
+      LINE=$(grep -n "#$KEY_NAME" $FILE | grep -Eo '^[^:]+') && sed -i "$LINE,$(($LINE+1))d;" $FILE
     fi
 
     if [ $TYPE = "add" ] || [ $TYPE = "update" ]; then
