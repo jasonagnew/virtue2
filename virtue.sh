@@ -483,12 +483,50 @@ EOF
       crontab -l | { cat; echo "$CRON #$JOB_NAME"; } | crontab -
     fi
 
-    echo "cron sorted"
+    echo "Cron: $JOB_NAME - $TYPE - $CRON"
   ;;
 
   app:env)
     nano $PUBLIC/$APP/$STORAGE/.env
   ;;
+
+  server:sshkey)
+    # Check Args
+    if [[ -z $2 ]]; then
+       echo "You must specify a type add, update, delete"
+       exit 1
+    else
+     TYPE="$2"
+    fi
+
+    if [[ -z $3 ]]; then
+       echo "You must specify a job name"
+       exit 1
+    else
+     KEY_NAME="$3"
+    fi
+
+    $FILE="~/.ssh/authorized_keys"
+
+    if [ $TYPE = "delete" ] || [ $TYPE = "update" ]; then
+      #Remove
+      LINE=$(grep -n "#$JOB_NAME" $FILE | grep -Eo '^[^:]+') && sed -i "$LINE,$(($LINE+1))d;" $FILE
+    fi
+
+    if [ $TYPE = "add" ] || [ $TYPE = "update" ]; then
+        if [[ -z $4 ]]; then
+           echo "You must specify a cron job"
+           exit 1
+        else
+         SSH_KEY="$4"
+        fi
+      #add
+      echo "#$KEY_NAME\n#SSH_KEY" >> $FILE
+    fi
+
+    echo "SSH Key: $KEY_NAME - $TYPE"
+  ;;
+
 
   server:key)
     cat ~/.ssh/id_rsa.pub
