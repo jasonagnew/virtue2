@@ -506,7 +506,7 @@ EOF
      KEY_NAME="$3"
     fi
 
-    $FILE="~/.ssh/authorized_keys"
+    FILE="~/.ssh/authorized_keys"
 
     if [ $TYPE = "delete" ] || [ $TYPE = "update" ]; then
       #Remove
