@@ -533,6 +533,25 @@ EOF
     echo "SSH Key: $KEY_NAME - $TYPE"
   ;;
 
+  server:errors)
+    # Check Args
+    if [[ -z $2 ]]; then
+       echo "You must specify a On or Off"
+       exit 1
+    else
+     FLAG="$2"
+    fi
+
+    SETTING="Off"
+
+    if [ $FLAG = "On" ]; then
+        SETTING="On"
+    fi
+
+    sudo sed -i "s/display_errors = .*/display_errors = $SETTING/" /etc/php5/fpm/php.ini
+    sudo service php5-fpm restart > /dev/null 2>&1
+    echo "PHP errors turned $SETTING"
+  ;;
 
   server:key)
     cat ~/.ssh/id_rsa.pub
