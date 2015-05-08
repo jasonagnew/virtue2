@@ -544,7 +544,7 @@ EOF
 
     SETTING="Off"
 
-    if [ $FLAG = "On" ]; then
+    if [ $FLAG = "on" ]; then
         SETTING="On"
     fi
 
