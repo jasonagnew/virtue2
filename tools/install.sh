@@ -162,6 +162,15 @@ sudo apt-get -qq install supervisor > /dev/null 2>&1
 exit 0
 +END
 
+echo ">>> Installing Beanstalk"
+bash << +END
+sudo apt-get -qq install beanstalkd > /dev/null 2>&1
+exit 0
++END
+
+echo ">>> Configuring Beanstalk"
+echo "START=yes" >> /etc/default/beanstalkd
+
 #SSH Key
 echo ">>> Generating SSH Key"
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa > /dev/null 2>&1
