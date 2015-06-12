@@ -235,7 +235,7 @@ case "$1" in
         # Loop commands
         for INDEX in ${COMMANDS[@]}
         do
-          COM=$(jq -r --arg var $INDEX '.commands | .[$var | tonumber]' deploy.json)
+          COM=$(jq -r --arg var $INDEX '.commands | .[$var | tonumber]' $PUBLIC/$APP/$RELEASES/$TIMESTAMP/deploy.json)
           echo -e "${YELLOW}>>> Running Command: $COM ${NC}"
           eval $COM
         done
@@ -246,7 +246,7 @@ case "$1" in
         for DIR in ${STORAGE_DIRS[@]}
         do
             # Fetch premissons
-            PERMISSION=$(jq -r --arg var $DIR '.storage[$var]' deploy.json)
+            PERMISSION=$(jq -r --arg var $DIR '.storage[$var]' $PUBLIC/$APP/$RELEASES/$TIMESTAMP/deploy.json)
 
             echo -e "${YELLOW}>>> Setting Storage Directory: ${DIR} ${NC}"
 
@@ -275,7 +275,7 @@ case "$1" in
         for DIR in ${PERMISSIONS_DIRS[@]}
         do
             # Fetch premissons
-            PERMISSION=$(jq -r --arg var $DIR '.permissions[$var]' deploy.json)
+            PERMISSION=$(jq -r --arg var $DIR '.permissions[$var]' $PUBLIC/$APP/$RELEASES/$TIMESTAMP/deploy.json)
 
             echo -e "${YELLOW}>>> Setting Permission: ${DIR} ${NC}"
 
