@@ -4,8 +4,18 @@
 source ~/.virtue_config
 
   echo ">>> Installing PHP"
+ 
+    if [ $PHP_VERISON == "latest" ]; then
+        sudo add-apt-repository -y ppa:ondrej/php5-5.6 > /dev/null 2>&1
+    fi
+    
+    if [ $PHP_VERISON == "distributed" ]; then
+        sudo add-apt-repository -y ppa:ondrej/php5 > /dev/null 2>&1
+    fi
 
-    sudo add-apt-repository -y ppa:ondrej/php5 > /dev/null 2>&1
+    if [ $PHP_VERISON == "previous" ]; then
+        sudo add-apt-repository -y ppa:ondrej/php5-oldstable > /dev/null 2>&1
+    fi
 
     sudo apt-key update > /dev/null 2>&1
     sudo apt-get update > /dev/null 2>&1
