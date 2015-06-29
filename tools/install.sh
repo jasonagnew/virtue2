@@ -190,7 +190,7 @@ cat >> /etc/fail2ban/jail.local <<EOF
 port=$SSH_PORT
 EOF
 
-sudo service nginx restart > /dev/null 2>&1
+sudo service fail2ban restart > /dev/null 2>&1
 exit 0
 +END
 
