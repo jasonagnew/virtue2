@@ -182,6 +182,19 @@ sudo apt-get -qq install fail2ban > /dev/null 2>&1
 exit 0
 +END
 
+#ufw
+echo ">>> Installing ufw"
+bash << +END
+sudo apt-get -qq install ufw > /dev/null 2>&1
+sudo ufw default deny incoming > /dev/null 2>&1
+sudo ufw default allow outgoing > /dev/null 2>&1
+sudo ufw allow 22 > /dev/null 2>&1
+sudo ufw allow 80 > /dev/null 2>&1
+sudo ufw allow 443 > /dev/null 2>&1
+echo "Y" | sudo ufw enable > /dev/null 2>&1
+exit 0
++END
+
 echo " "
 echo "All finished"
 echo " "
