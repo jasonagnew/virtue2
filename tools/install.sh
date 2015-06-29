@@ -183,6 +183,14 @@ ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa > /dev/null 2>&1
 echo ">>> Installing Fail2Ban"
 bash << +END
 sudo apt-get -qq install fail2ban > /dev/null 2>&1
+
+touch /etc/fail2ban/jail.local > /dev/null 2>&1
+cat >> /etc/fail2ban/jail.local <<EOF
+[ssh]
+port=$SSH_PORT
+EOF
+
+sudo service nginx restart > /dev/null 2>&1
 exit 0
 +END
 
