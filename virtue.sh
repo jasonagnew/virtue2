@@ -393,7 +393,7 @@ EOF
     sudo mkdir -p $SSL/$APP/$DOMAIN
 
     if [ $4 = "self-sign" ]; then
-    openssl genrsa -out $SSL/$APP/$DOMAIN/server.key 1024
+    openssl genrsa -out $SSL/$APP/$DOMAIN/server.key 2048
     touch $SSL/$APP/$DOMAIN/openssl.cnf
     cat >> $SSL/$APP/$DOMAIN/openssl.cnf <<EOF
 [ req ]
@@ -410,7 +410,7 @@ emailAddress = test@email.com
 EOF
 
     openssl req -config $SSL/$APP/$DOMAIN/openssl.cnf -new -key $SSL/$APP/$DOMAIN/server.key -out $SSL/$APP/$DOMAIN/server.csr
-    openssl x509 -req -days 1024 -in $SSL/$APP/$DOMAIN/server.csr -signkey $SSL/$APP/$DOMAIN/server.key -out $SSL/$APP/$DOMAIN/server.crt
+    openssl x509 -req -days 2048 -in $SSL/$APP/$DOMAIN/server.csr -signkey $SSL/$APP/$DOMAIN/server.key -out $SSL/$APP/$DOMAIN/server.crt
 
     else
         # Check Args
