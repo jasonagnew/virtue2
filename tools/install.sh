@@ -81,6 +81,10 @@ if [[ -n "$6" ]]; then
     set_config "USER" $6
 fi
 
+if [[ -n "$7" ]]; then
+    set_config "SSH_PORT" $7
+fi
+
 
 # Load config file
 source ~/.virtue_config
@@ -188,6 +192,14 @@ bash << +END
 sudo apt-get -qq install ufw > /dev/null 2>&1
 sudo ufw default deny incoming > /dev/null 2>&1
 sudo ufw default allow outgoing > /dev/null 2>&1
+
+if [ $SSH_PORT = "22" ]; then
+    sudo ufw allow 22 > /dev/null 2>&1
+else
+    sudo ufw allow 22 > /dev/null 2>&1
+    sudo ufw allow $SSH_PORT > /dev/null 2>&1
+fi
+
 sudo ufw allow 22 > /dev/null 2>&1
 sudo ufw allow 80 > /dev/null 2>&1
 sudo ufw allow 443 > /dev/null 2>&1
