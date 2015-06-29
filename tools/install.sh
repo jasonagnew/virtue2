@@ -94,7 +94,7 @@ bash $VIRTUE/scripts/php.sh
 #Self Sign - used to reject random connections
 echo ">>> Installing Self Sign SSL - Used to reject 443 connections"
 sudo mkdir -p $SSL/all
-openssl genrsa -out $SSL/all/server.key 2048 > /dev/null 2>&1
+openssl genrsa -out $SSL/all/server.key 1024 > /dev/null 2>&1
 touch $SSL/all/openssl.cnf > /dev/null 2>&1
 cat >> $SSL/all/openssl.cnf <<EOF
 [ req ]
@@ -110,7 +110,7 @@ CN = Common Name
 emailAddress = test@email.com
 EOF
 openssl req -config $SSL/all/openssl.cnf -new -key $SSL/all/server.key -out $SSL/all/server.csr > /dev/null 2>&1
-openssl x509 -req -days 2048 -in $SSL/all/server.csr -signkey $SSL/all/server.key -out $SSL/all/server.crt > /dev/null 2>&1
+openssl x509 -req -days 1024 -in $SSL/all/server.csr -signkey $SSL/all/server.key -out $SSL/all/server.crt > /dev/null 2>&1
 
 
 if [ $HTTP_SERVER = "apache" ]; then
