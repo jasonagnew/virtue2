@@ -175,6 +175,13 @@ echo "START=yes" >> /etc/default/beanstalkd
 echo ">>> Generating SSH Key"
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa > /dev/null 2>&1
 
+#Fail2Ban
+echo ">>> Installing Fail2Ban"
+bash << +END
+sudo apt-get -qq install fail2ban > /dev/null 2>&1
+exit 0
++END
+
 echo " "
 echo "All finished"
 echo " "
