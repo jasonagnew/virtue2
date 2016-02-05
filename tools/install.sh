@@ -14,6 +14,7 @@ function set_config () {
 # Install Base Pacckages
 echo ">>> Installing Trusty Base Packages"
 bash << +END
+sudo apt-get update > /dev/null 2>&1
 sudo apt-get install -qq curl unzip git-core ack-grep jq > /dev/null 2>&1
 exit 0
 +END
