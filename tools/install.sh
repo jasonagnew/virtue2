@@ -236,7 +236,7 @@ exit 0
 
 echo ">>> Calling Callback URL"
 bash << +END
-curl $CALLBACK_URL > /dev/null 2>&1
+curl http://$CALLBACK_URL > /dev/null 2>&1
 exit 0
 +END
 
