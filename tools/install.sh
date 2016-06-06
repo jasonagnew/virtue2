@@ -72,6 +72,18 @@ fi
 
 if [[ -n "$4" ]]; then
     set_config "PHP_VERISON" $4
+
+    if [ $4 == "latest" ]; then
+        set_config "PHP_NUMBER" "php7.0"
+    fi
+
+    if [ $4== "distributed" ]; then
+        set_config "PHP_NUMBER" "php5.6"
+    fi
+
+    if [ $4 == "previous" ]; then
+        set_config "PHP_NUMBER" "php5.5"
+    fi
 fi
 
 if [[ -n "$5" ]]; then
@@ -89,6 +101,8 @@ fi
 if [[ -n "$8" ]]; then
     set_config "CALLBACK_URL" $8
 fi
+
+
 
 
 # Load config file
