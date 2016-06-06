@@ -9,7 +9,7 @@ SITE_REMOTE=git-remote.conf
 SITE_DOMAINS=site-domains.conf
 GIT=/var/repo
 SSL=/etc/http/ssl
-GIT_URL=https://raw.githubusercontent.com/jasonagnew/virtue2/master
+GIT_URL=https://raw.githubusercontent.com/jasonagnew/virtue2/debug
 SSH_PORT=22
 
 HTTP_SERVER=apache
