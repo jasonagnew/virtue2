@@ -86,6 +86,10 @@ if [[ -n "$7" ]]; then
     set_config "SSH_PORT" $7
 fi
 
+if [[ -n "$8" ]]; then
+    set_config "CALLBACK_URL" $8
+fi
+
 
 # Load config file
 source ~/.virtue_config
@@ -213,6 +217,12 @@ sudo ufw allow 22 > /dev/null 2>&1
 sudo ufw allow 80 > /dev/null 2>&1
 sudo ufw allow 443 > /dev/null 2>&1
 echo "Y" | sudo ufw enable > /dev/null 2>&1
+exit 0
++END
+
+echo ">>> Calling Callback URL"
+bash << +END
+curl $CALLBACK_URL > /dev/null 2>&1
 exit 0
 +END
 
