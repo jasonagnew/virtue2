@@ -74,15 +74,15 @@ if [[ -n "$4" ]]; then
     set_config "PHP_VERISON" $4
 
     if [ $4 == "latest" ]; then
-        set_config "PHP_NUMBER" "php7.0"
+        set_config "PHP_NUMBER" "7.0"
     fi
 
     if [ $4 == "distributed" ]; then
-        set_config "PHP_NUMBER" "php5.6"
+        set_config "PHP_NUMBER" "5.6"
     fi
 
     if [ $4 == "previous" ]; then
-        set_config "PHP_NUMBER" "php5.5"
+        set_config "PHP_NUMBER" "5.5"
     fi
 fi
 

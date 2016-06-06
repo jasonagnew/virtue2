@@ -299,7 +299,7 @@ case "$1" in
     chown -R $USER:www-data $PUBLIC/$APP/$RELEASES/$TIMESTAMP
     rm -rf $PUBLIC/$APP/$CURRENT
     ln -nfs $PUBLIC/$APP/$RELEASES/$TIMESTAMP $PUBLIC/$APP/$CURRENT
-    sudo service $PHP_NUMBER-fpm reload
+    sudo service php$PHP_NUMBER-fpm reload
 
     # Clear out older realeases
     ls -dt $PUBLIC/$APP/$RELEASES/* | tail -n +6 | xargs -d '\n' rm -rf;
@@ -339,7 +339,7 @@ case "$1" in
 
     rm -rf $PUBLIC/$APP/$CURRENT
     ln -nfs $PREVIOUS $PUBLIC/$APP/$CURRENT
-    sudo service $PHP_NUMBER-fpm reload
+    sudo service php$PHP_NUMBER-fpm reload
 
     # Clear latest realease
     ls -dt $PUBLIC/$APP/$RELEASES/* | head -1 | xargs -d '\n' rm -rf;
@@ -548,8 +548,8 @@ EOF
         SETTING="On"
     fi
 
-    sudo sed -i "s/display_errors = .*/display_errors = $SETTING/" /etc/$PHP_NUMBER/fpm/php.ini
-    sudo service $PHP_NUMBER-fpm restart > /dev/null 2>&1
+    sudo sed -i "s/display_errors = .*/display_errors = $SETTING/" /etc/php/$PHP_NUMBER/fpm/php.ini
+    sudo service php$PHP_NUMBER-fpm restart > /dev/null 2>&1
     echo "PHP errors turned $SETTING"
   ;;
 
