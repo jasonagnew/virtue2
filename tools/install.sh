@@ -77,7 +77,7 @@ if [[ -n "$4" ]]; then
         set_config "PHP_NUMBER" "php7.0"
     fi
 
-    if [ $4== "distributed" ]; then
+    if [ $4 == "distributed" ]; then
         set_config "PHP_NUMBER" "php5.6"
     fi
 
