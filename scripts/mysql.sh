@@ -3,20 +3,18 @@
 # Load config file
 source ~/.virtue_config
 
-echo ">>> Installing MySQL Server $MYSQL_VERISON"
+echo ">>> Installing MySQL Server 5.7"
 
 mysql_package=mysql-server
 
-if [ $MYSQL_VERISON == "5.6" ]; then
-    # Add repo for MySQL 5.6
-	sudo add-apt-repository -y ppa:ondrej/mysql-5.6 > /dev/null 2>&1
+# Add repo for MySQL 5.6
+sudo add-apt-repository -y ppa:ondrej/mysql-5.7 > /dev/null 2>&1
 
-	# Update Again
-	sudo apt-get update > /dev/null 2>&1
+# Update Again
+sudo apt-get update > /dev/null 2>&1
 
-	# Change package
-	mysql_package=mysql-server-5.6
-fi
+# Change package
+mysql_package=mysql-server-5.7
 
 # Install MySQL without password prompt
 # Set username and password to 'root'
