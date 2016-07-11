@@ -14,7 +14,7 @@ source ~/.virtue_config
     # -qq implies -y --force-yes
 
 
-    sudo apt-get install -qq --force-yes php$PHP_NUMBER-cli php$PHP_NUMBER-fpm php$PHP_NUMBER-mysql php$PHP_NUMBER-pgsql php$PHP_NUMBER-sqlite php$PHP_NUMBER-curl php$PHP_NUMBER-gd php$PHP_NUMBER-gmp php$PHP_NUMBER-mcrypt php$PHP_NUMBER-xdebug php$PHP_NUMBER-memcached php$PHP_NUMBER-imagick php$PHP_NUMBER-intl libssh2-1-dev libssh2-php > /dev/null 2>&1
+    sudo apt-get install -qq --force-yes php$PHP_NUMBER-cli php$PHP_NUMBER-fpm php$PHP_NUMBER-mysql php$PHP_NUMBER-pgsql php$PHP_NUMBER-sqlite php$PHP_NUMBER-curl php$PHP_NUMBER-gd php$PHP_NUMBER-gmp php$PHP_NUMBER-mcrypt php$PHP_NUMBER-xdebug php$PHP_NUMBER-memcached php$PHP_NUMBER-imagick php$PHP_NUMBER-intl libssh2-1-dev php-ssh2 > /dev/null 2>&1
 
     # Set PHP FPM to listen on TCP instead of Socket
     sudo sed -i "s/listen =.*/listen = 127.0.0.1:9000/" /etc/php/$PHP_NUMBER/fpm/pool.d/www.conf
