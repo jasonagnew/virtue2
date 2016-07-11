@@ -36,6 +36,8 @@ hash git >/dev/null 2>&1 && /usr/bin/env git clone --q https://github.com/jasona
   exit
 }
 
+cd $VIRTUE && git checkout xenial-xerus
+
 echo ">>> Looking for an existing Virtue config..."
 if [ -f ~/.virtue_config ] || [ -h ~/.virtue_config ]; then
   echo "Found ~/.virtue_config. Backing up to ~/.virtue_config.pre-virtue";
