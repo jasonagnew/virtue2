@@ -8,7 +8,7 @@ echo "********************************"
 echo " "
 
 function set_config () {
-  sed -i -e "/$1=/ s/=.*/=$2/" ~/.virtue_config
+  sed -i -e "/$1=/ s@=.*@=$2@" ~/.virtue_config
 }
 
 # Install Base Pacckages
@@ -236,7 +236,7 @@ exit 0
 
 echo ">>> Calling Callback URL"
 bash << +END
-curl http://$CALLBACK_URL > /dev/null 2>&1
+curl $CALLBACK_URL > /dev/null 2>&1
 exit 0
 +END
 
