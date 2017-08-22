@@ -26,7 +26,7 @@ Add:
 
 You can install Virtue directly on your server like so:
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s [mysql-user] [mysql-password] [mysql-remote] [php-verson] [http-server] [server-user]
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/xenial-xerus/tools/install.sh | bash -s [mysql-user] [mysql-password] [mysql-remote] [php-verson] [http-server] [server-user]
 
 Please complete the variables in the brackets, examples below. The install may take around 5 minutes.
 
@@ -38,13 +38,13 @@ Please complete the variables in the brackets, examples below. The install may t
 
 ### Example
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/tools/install.sh | bash -s root pass1234 true latest apache root
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/xenial-xerus/tools/install.sh | bash -s root pass1234 true latest apache root
 
 ## Introducing Usher
 
 Usher is Virtue's counterpart. It acts as management tool for your Mac or Linux system. You can built servers, deploy apps etc. from your local terminal. To install open your terminal and run:
 
-    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/master/usher.sh?sd > /usr/local/bin/usher && sudo chmod a+x /usr/local/bin/usher
+    $ curl -s -L https://raw.githubusercontent.com/jasonagnew/virtue2/xenial-xerus/usher.sh?sd > /usr/local/bin/usher && sudo chmod a+x /usr/local/bin/usher
 
 Lets build our first server, you can see the different options above.
 
